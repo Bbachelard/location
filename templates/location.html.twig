@@ -1,0 +1,81 @@
+{% extends "base.html.twig" %}
+{% block title %}Location{% endblock %}
+{% block body %}
+     
+
+
+
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal text-body-emphasis">Location</h1>
+      <form>
+        {{form_start(form) }}
+        <div class="mb-3">
+          <label for="exampleInputNom" class="form-label">Nom</label>
+          {{ form_widget(form.Nom) }}
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputTel" class="form-label">Telephone</label>
+          {{ form_widget(form.tel) }}
+        </div>
+        <div class="mb-3">
+          <label for="start">date:</label>
+          {{ form_widget(form.date) }}
+        </div>
+        
+    </div>
+  </header>
+
+  <main>
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Decouvert</h4>
+          </div>
+          <div class="card-body">
+            </br>
+            {{ form_widget(form.quantiteDec) }}
+            </br></br>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Sportif</h4>
+          </div>
+          <div class="card-body">
+            </br>
+            {#<button type="button" class="w-50 btn btn-lg btn-primary">▲</button>#}
+            {{ form_widget(form.quantiteSpor) }}
+            {#<button type="button" class="w-50 btn btn-lg btn-primary">▼</button>#}
+            </br></br>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Sportif</h4>
+          </div>
+          <div class="card-body">
+            </br>
+            {{ form_widget(form.quantiteTyro) }}
+            </br></br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <button type="submit" class="btn btn-primary btn-lg ">Valide</button>
+      {{ form_end(form) }}
+      </form>
+    </div>
+
+  </main>
+  
+  
+ 
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}    

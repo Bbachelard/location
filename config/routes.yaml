@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+location_day:
+    path: /jour/{date}
+    controller: App\Controller\MainController::day
+    requirements:
+        date: '\d{4}-\d{2}-\d{2}'

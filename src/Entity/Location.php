@@ -20,9 +20,6 @@ class Location
     #[ORM\Column(length: 255)]
     private ?string $tel = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
-
     #[ORM\Column]
     private ?int $quantite = null;
 
@@ -47,9 +44,47 @@ class Location
     #[ORM\Column(nullable: true)]
     private ?int $money = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateJour = null;
 
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
+        $this->dateJour = $date;
+        return $this;
+    }
+    
+    public function __construct()
+    {
+        $this->dateJour = new \DateTime(); // Initialise dateJour avec la date actuelle par défaut
+    }
+    
+    public function getDateJour(): ?\DateTimeInterface
+    {
+        return $this->dateJour;
+    }
+
+    public function setDateJour(\DateTimeInterface $dateJour): static
+    {
+        $this->dateJour = $dateJour;
+
+        return $this;
+    }
+
+
+    public function isDate($dateD){
+        return $this->dateJour == $dateD;
+    }
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -79,17 +114,7 @@ class Location
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): static
-    {
-        $this->date = $date;
-
-        return $this;
-    }
+    
 
     public function getQuantite(): ?int
     {
@@ -187,19 +212,5 @@ class Location
         return $this;
     }
 
-    public function getDateJour(): ?\DateTimeInterface
-    {
-        return $this->dateJour;
-    }
-
-    public function setDateJour(\DateTimeInterface $dateJour): static
-    {
-        $this->dateJour = $dateJour;
-
-        return $this;
-    }
-    public function isDate($dateD){
-        return $this->dateJour == $dateD;
-    }
-    
+   
 }

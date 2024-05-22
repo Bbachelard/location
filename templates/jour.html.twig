@@ -1,30 +1,44 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Aujourd'hui{% endblock %}
+
+{% block title %}Locations du {{ currentDate|date('Y-m-d') }}{% endblock %}
+{% block stylesheet %}<link href="/assets/styles/jour.css" rel="stylesheet">
+{% endblock %}
 {% block body %}
      
 
 
 
     <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <button type="button" class="w-30 btn btn-lg btn-primary">◁ </button>
-        <h1 class="display-4 fw-normal text-body-emphasis">&nbsp;&nbsp;&nbsp;   Date &nbsp;&nbsp;&nbsp;   </h1>
-        <button type="button" class="w-30 btn btn-lg btn-primary">▷</button>
-      </nav>
-      </br></br></br></br>
-      <div class="row mt-2 ">
+        <div class="nav-buttons">
+            <a href="{{ path('location_day', { 'date': previousDate }) }}"> <button id="prevButton"> Jour précédent</button></a> &nbsp;&nbsp;&nbsp;
+            <h2>Locations du {{ currentDate|date('Y-m-d') }}</h2> &nbsp;&nbsp;&nbsp;
+            <a href="{{ path('location_day', { 'date': nextDate }) }}"><button id="nextButton">Jour suivant</button></a>
+        </div>
       
-   
+    <div class="row mt-2 ">
+      
+        <h5>Information sur la journer : </h5> 
+        <p>Quantiter total : <b style="color:#0275d8">{{ totalQuantityRented }}</b></p>
+        <p>gain total : <b style="color:#0275d8">{{ totalEarnings }} €</b></br>
+        CB : <b style="color:#0275d8">{{ totals.totalCB }}</b>
+        &nbsp;&nbsp;
+        Cheque Vacance : <b style="color:#0275d8">{{ totals.totalCV }}</b>
+        &nbsp;&nbsp;
+        Espece : <b style="color:#0275d8">{{ totals.totalEspece }}</b>
+        </p>
+
+
 
         {% for location in locations %}
           {# {% if location.isDate('2024-05-19') %} #}
-          <div class="col-3 ">
+          <div class="col-3 mt-5">
             <div class="card" style=" width: 13rem;">
               <div class="card-body">
                 <h4 class="card-title">quantite : <b style="color:#0275d8"> {{location.quantite}}</b></h5>
                 <h5 class="card-title">prix : <b style="color:#0275d8">{{location.money }} €</b></h5>
                 <p class="card-text">nom : {{location.nom}}</br> tel : {{location.tel}}</br>kit decouvert : {{location.quantiteDec}}</br>kit sport : {{location.quantiteSpor}}</br>kit pouly :{{location.quantiteTyro}}</p>
+                <p>date : {{ location.date|date('Y-m-d H:i') }}</p>
                 <a href="#" class="card-link">Modifier</a>
               </div>
             </div>
@@ -32,8 +46,11 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         {% endfor %}
       </div>
+      
     </div>
   </header>
+  
+
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}   

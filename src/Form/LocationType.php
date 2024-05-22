@@ -11,6 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+
 class LocationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -29,18 +32,41 @@ class LocationType extends AbstractType
             ])
             ->add('quantiteDec', IntegerType::class, [
                 'attr'=>['class'=>'form-control','placeholder'=>"Quantité",'min'=>"0"]
+                ,'data' => 0,
             ])
             ->add('quantiteSpor', IntegerType::class, [
                 'attr'=>['class'=>'form-control','placeholder'=>"Quantité" ,'min'=>"0"]
+                ,'data' => 0,
             ])
             ->add('quantiteTyro', IntegerType::class, [
                 'attr'=>['class'=>'form-control','placeholder'=>"Quantité",'min'=>"0"]
+                ,'data' => 0,
             ])
-            /*
-            ->add('moneyCB')
-            ->add('moneyCheque')
-            ->add('moneyEspece')
-            ->add('quantite')*/
+            ->add('moneyCB', IntegerType::class, [
+                'attr'=>['class'=>'form-control','placeholder'=>"Carte bancaire",'min'=>"0"]
+                ,'data' => 0,
+            ])
+            ->add('moneyCheque', IntegerType::class, [
+                'attr'=>['class'=>'form-control','placeholder'=>"Quantité",'min'=>"0"]
+                ,'data' => 0,
+            ])
+            ->add('moneyEspece', IntegerType::class, [
+                'attr'=>['class'=>'form-control','placeholder'=>"Quantité",'min'=>"0"]
+                ,'data' => 0,
+            ])
+            //->add('quantite')
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
+                $data = $event->getData();
+    
+                // Calculer la somme des quantités
+                $sumQuantite = $data['quantiteDec'] + $data['quantiteSpor'] + $data['quantiteTyro'];
+                $sumMoney = $data['moneyCB'] + $data['moneyCheque'] + $data['moneyEspece'];
+                // Mettre à jour la valeur de la quantité totale dans les données soumises
+                $data['quantite'] = $sumQuantite;
+                $data['totalMoney'] = $sumMoney;
+                // Mettre à jour les données du formulaire
+                $event->setData($data);
+            });
         ;
     }
 

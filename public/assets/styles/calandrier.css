@@ -1,0 +1,124 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --blue-grey-400: hsl(210, 38%, 95%);
+    --blue-grey-100: hsl(210, 38%, 80%);
+    --black-400: hsl(0, 0%, 96%);
+    --black-300: hsl(0, 0%, 85%);
+    --black-200: hsl(0, 0%, 75%);
+    --black-100: hsl(0, 0%, 20%);
+  }
+  
+  html {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+    font-family: inherit;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    font-family: "Inconsolata", serif;
+    background: var(--blue-grey-400);
+    color: var(--black-100);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .calendar {
+    background-color: var(--white);
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 300px;
+    padding: 0.25rem 0.5rem 1rem 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+    > .top {
+      grid-column: 1 / span 7;
+    }
+  
+    > .header {
+      padding: 0.75rem;
+      font-size: 1.25rem;
+      grid-column: 1 / span 7;
+  
+      > span {
+        flex: 1;
+        text-align: center;
+      }
+  
+      button {
+        border: none;
+        background: var(--white);
+        padding: 0.25rem 0.5rem;
+  
+        &:hover {
+          cursor: pointer;
+          background: var(--black-400);
+          transition: background 150ms;
+        }
+      }
+    }
+  
+    > * {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+  
+    > .day {
+      color: var(--black-200);
+      font-size: 1rem;
+      border-radius: 2px;
+  
+      &.selected {
+        border: 1px solid var(--blue-grey-100);
+      }
+  
+      &.current {
+        color: var(--black-100);
+      }
+  
+      &::before {
+        content: "";
+        display: inline-block;
+        height: 0;
+        padding-bottom: 100%;
+        width: 1px;
+      }
+  
+      button {
+        color: inherit;
+        background: transparent;
+        border: none;
+        height: 100%;
+        width: 100%;
+        &:hover {
+          background: var(--black-400);
+          transition: background 150ms;
+        }
+      }
+    }
+  
+    > .today {
+      background: var(--black-400);
+      border-radius: 2px;
+    }
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  

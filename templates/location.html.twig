@@ -3,12 +3,21 @@
 {% block body %}
      
 
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Location</h1>
+      {% for successMessage in app.flashes('success') %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-success">
+                {{successMessage| raw}}
+            </div>
+        </div>
+    </div>#
+{% endfor %}
+      
 
-
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <h1 class="display-4 fw-normal text-body-emphasis">Location</h1>
-      <form>
-        {{form_start(form) }}
+{{form_start(form) }}
+<form>
         <div class="mb-3">
           <label for="exampleInputNom" class="form-label">Nom</label>
           {{ form_widget(form.Nom) }}
@@ -75,7 +84,7 @@
       <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <h3 class=" fw-normal text-body-emphasis">Moyen de payement :</h3>
       </br></br>
-      <form>
+    
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col">
               <div class="card mb-4 rounded-3 shadow-sm">
@@ -116,8 +125,7 @@
               </div>
             </div>
           </div>
-        
-      </form>
+    
     </div>
 </div>
 
@@ -126,8 +134,8 @@
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
       <button type="submit" class="btn btn-primary btn-lg ">Valide</button>
       {{ form_end(form) }}
-      </form>
-    </div>
+</form>
+</div>
 </main>
 
  

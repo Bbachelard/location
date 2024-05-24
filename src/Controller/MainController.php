@@ -31,7 +31,7 @@ class MainController extends AbstractController{
         $form =$this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
+        if($form->isSubmitted()&& $form->isValid()){
             $entityManagerInterface->persist($location);
             $entityManagerInterface->flush();
             $this->addFlash('success','félicitation, vous avez créé un produit : <b>'.$location->getNom()."</b>");

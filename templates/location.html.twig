@@ -1,148 +1,137 @@
 {% extends "base.html.twig" %}
 {% block title %}Location{% endblock %}
 {% block body %}
-     
-
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
     <h1 class="display-4 fw-normal text-body-emphasis">Location</h1>
-      {% for successMessage in app.flashes('success') %}
+    {% for successMessage in app.flashes('success') %}
     <div class="row">
         <div class="col-12">
             <div class="alert alert-success">
-                {{successMessage| raw}}
+                {{successMessage|raw}}
             </div>
         </div>
-    </div>#
-{% endfor %}
-      
-
-{{form_start(form) }}
-<form>
-        <div class="mb-3">
-          <label for="exampleInputNom" class="form-label">Nom</label>
-          {{ form_widget(form.Nom) }}
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputTel" class="form-label">Telephone</label>
-          {{ form_widget(form.tel) }}
-        </div>
-        <div class="mb-3">
-          <label for="start">date:</label>
-          {{ form_widget(form.date) }}
-        </div>
-        
     </div>
-  </header>
+    {% endfor %}
 
-  <main>
+    {{ form_start(form) }}
+    <form>
+        <div class="mb-3">
+            <label for="exampleInputNom" class="form-label">Nom</label>
+            {{ form_widget(form.Nom) }}
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputTel" class="form-label">Telephone</label>
+            {{ form_widget(form.tel) }}
+        </div>
+        <div class="mb-3">
+            <label for="start">date:</label>
+            {{ form_widget(form.date) }}
+        </div>
+    </form>
+</div>
+
+<main>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Decouvert</h4>
-          </div>
-          <div class="card-body">
-            </br>
-            {{ form_widget(form.quantiteDec) }}
-            </br>
-          </div>
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Decouvert</h4>
+                </div>
+                <div class="card-body">
+                    <br/>
+                    {{ form_widget(form.quantiteDec, {'attr': {'class': 'quantity-input', 'data-price': 10}}) }}
+                    <br/>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Sportif</h4>
-          </div>
-          <div class="card-body">
-            </br>
-            {{ form_widget(form.quantiteSpor) }}
-            </br>
-          </div>
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Sportif</h4>
+                </div>
+                <div class="card-body">
+                    <br/>
+                    {{ form_widget(form.quantiteSpor, {'attr': {'class': 'quantity-input', 'data-price': 15}}) }}
+                    <br/>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Tyrolienne</h4>
-          </div>
-          <div class="card-body">
-            </br>
-            {{ form_widget(form.quantiteTyro) }}
-            </br>
-          </div>
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Tyrolienne</h4>
+                </div>
+                <div class="card-body">
+                    <br/>
+                    {{ form_widget(form.quantiteTyro, {'attr': {'class': 'quantity-input', 'data-price': 5}}) }}
+                    <br/>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    
 
-
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="showMoreFields">
-    <label class="form-check-label" for="showMoreFields">Pour maintenant</label>
-</div>
-<div id="additionalFields" style="display: none;">
-      <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <h3 class=" fw-normal text-body-emphasis">Moyen de payement :</h3>
-      </br></br>
-    
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="showMoreFields">
+        <label class="form-check-label" for="showMoreFields">Pour maintenant</label>
+    </div>
+    <div id="additionalFields" style="display: none;">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h3 class="fw-normal text-body-emphasis">Moyen de payement :</h3>
+            <br/><br/>
             <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">CB</h4>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">CB</h4>
+                        </div>
+                        <div class="card-body">
+                            <br/>
+                            {{ form_widget(form.moneyCB, {'attr': {'step': 5}}) }}
+                            <br/>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                  </br>
-                  {{ form_widget(form.moneyCB) }}
-                  </br>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">CV</h4>
+                        </div>
+                        <div class="card-body">
+                            <br/>
+                            {{ form_widget(form.moneyCheque, {'attr': {'step': 5}}) }}
+                            <br/>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">Espece</h4>
+                        </div>
+                        <div class="card-body">
+                            <br/>
+                            {{ form_widget(form.moneyEspece, {'attr': {'step': 5}}) }}
+                            <br/>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">CV</h4>
-                </div>
-                <div class="card-body">
-                  </br>
-                  {#<button type="button" class="w-50 btn btn-lg btn-primary">▲</button>#}
-                  {{ form_widget(form.moneyCheque) }}
-                  {#<button type="button" class="w-50 btn btn-lg btn-primary">▼</button>#}
-                  </br>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card mb-4 rounded-3 shadow-sm">
-                <div class="card-header py-3">
-                  <h4 class="my-0 fw-normal">Espece</h4>
-                </div>
-                <div class="card-body">
-                  </br>
-                  {{ form_widget(form.moneyEspece) }}
-                  </br>
-                </div>
-              </div>
-            </div>
-          </div>
-    
+        </div>
     </div>
-</div>
 
-
-
-<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-      <button type="submit" class="btn btn-primary btn-lg ">Valide</button>
-      {{ form_end(form) }}
-</form>
-</div>
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h3>Total Cost: <span id="totalCost">0</span> €</h3>
+        <button type="submit" class="btn btn-primary btn-lg">Valide</button>
+        {{ form_end(form) }}
+    </div>
 </main>
 
- 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var checkbox = document.getElementById('showMoreFields');
         var additionalFields = document.getElementById('additionalFields');
+        var totalCostElement = document.getElementById('totalCost');
+        var quantityInputs = document.querySelectorAll('.quantity-input');
 
         checkbox.addEventListener('change', function() {
             if (checkbox.checked) {
@@ -151,7 +140,23 @@
                 additionalFields.style.display = 'none';
             }
         });
+
+        function updateTotalCost() {
+            var totalCost = 0;
+            quantityInputs.forEach(function(input) {
+                var price = parseFloat(input.dataset.price) || 0;
+                var quantity = parseInt(input.value) || 0;
+                totalCost += price * quantity;
+            });
+            totalCostElement.textContent = totalCost.toFixed(2);
+        }
+
+        quantityInputs.forEach(function(input) {
+            input.addEventListener('input', updateTotalCost);
+        });
+
+        updateTotalCost();  // Initial calculation
     });
 </script>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-{% endblock %}    
+{% endblock %}

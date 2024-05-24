@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -53,6 +54,12 @@ class LocationType extends AbstractType
             ->add('moneyEspece', IntegerType::class, [
                 'attr'=>['class'=>'form-control','placeholder'=>"Quantité",'min'=>"0"]
                 ,'data' => 0,
+            ])
+            ->add('quantite', HiddenType::class, [
+                'mapped' => false
+            ])
+            ->add('totalMoney', HiddenType::class, [
+                'mapped' => false
             ])
             //->add('quantite')
             ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {

@@ -65,11 +65,8 @@ class LocationRepository extends ServiceEntityRepository
         $qb->andWhere('l.dateJour = :date')
            ->setParameter('date', $date);
         return (int) $qb->getQuery()->getSingleScalarResult();
-      
         
     }
-
-
    }
 
     //    /**
